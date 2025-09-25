@@ -16,7 +16,7 @@ The data analysis consists in the following steps:
 
 Call the program with:
 ```bash
-G4_PS_creator <inputFile> <outputPath>
+G4_PS_creator <inputFile> <outputPath> <parameters>
 ```
 
 - `<inputFile>` is the file containing the phase space in root format. A sample of such file is provided in `root_files/join.root`.
