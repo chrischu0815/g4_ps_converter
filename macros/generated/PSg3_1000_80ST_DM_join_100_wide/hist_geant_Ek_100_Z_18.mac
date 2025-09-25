@@ -1,0 +1,39 @@
+# hist key: Ekin_wide_100_18
+# Z = 18
+# 
+##########################
+/gps/source/add 9.51115e-09
+/gps/particle ion
+/gps/ion 18 40 # with u = 39.9525
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/centre 0 0 -200 mm
+/gps/direction 0 0 1
+/gps/pos/halfx 50 mm
+/gps/pos/halfy 50 mm
+/gps/ene/type Arb
+/gps/ene/diffspec 1
+/gps/hist/type arb
+/gps/hist/point 39.9525 0.882353
+/gps/hist/point 79.905 0
+/gps/hist/point 119.858 0.0588235
+/gps/hist/point 159.81 0
+/gps/hist/point 199.763 0
+/gps/hist/point 239.715 0
+/gps/hist/point 279.668 0
+/gps/hist/point 319.62 0.0294118
+/gps/hist/point 359.573 0
+/gps/hist/point 399.525 0
+/gps/hist/point 439.478 0
+/gps/hist/point 479.43 0
+/gps/hist/point 519.383 0
+/gps/hist/point 559.335 0
+/gps/hist/point 599.288 0
+/gps/hist/point 639.24 0
+/gps/hist/point 679.193 0
+/gps/hist/point 719.145 0
+/gps/hist/point 759.098 0
+/gps/hist/point 799.05 0
+/gps/hist/point 839.003 0.0294118
+/gps/hist/inter Lin
+# EOF 

@@ -1,0 +1,5 @@
+/run/initialize
+/control/execute sim.mac
+/analysis/setFileName PSmod_1000_join.root
+/run/printProgress 5000000
+/run/beamOn 500000000

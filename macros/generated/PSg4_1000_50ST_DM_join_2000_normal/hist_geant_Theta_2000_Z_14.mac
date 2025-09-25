@@ -1,0 +1,76 @@
+# hist key: Theta_2000_14
+# Z = 14
+# 
+##########################
+/gps/ang/type user
+/gps/hist/type theta
+/gps/hist/point 0.0174533 0.482848
+/gps/hist/point 0.0349066 0.494787
+/gps/hist/point 0.0523599 0.0198194
+/gps/hist/point 0.0698132 0.00103533
+/gps/hist/point 0.0872665 0.000645771
+/gps/hist/point 0.10472 0.000406363
+/gps/hist/point 0.122173 0.000210007
+/gps/hist/point 0.139626 0.000107103
+/gps/hist/point 0.15708 8.19027e-05
+/gps/hist/point 0.174533 2.62509e-05
+/gps/hist/point 0.191986 1.47005e-05
+/gps/hist/point 0.20944 1.05003e-06
+/gps/hist/point 0.226893 3.1501e-06
+/gps/hist/point 0.244346 2.10007e-06
+/gps/hist/point 0.261799 6.3002e-06
+/gps/hist/point 0.279253 1.05003e-06
+/gps/hist/point 0.296706 0
+/gps/hist/point 0.314159 1.05003e-06
+/gps/hist/point 0.331613 0
+/gps/hist/point 0.349066 1.05003e-06
+/gps/hist/point 0.366519 0
+/gps/hist/point 0.383972 0
+/gps/hist/point 0.401426 1.05003e-06
+/gps/hist/point 0.418879 0
+/gps/hist/point 0.436332 0
+/gps/hist/point 0.453786 0
+/gps/hist/point 0.471239 0
+/gps/hist/point 0.488692 0
+/gps/hist/point 0.506145 0
+/gps/hist/point 0.523599 0
+/gps/hist/point 0.541052 0
+/gps/hist/point 0.558505 0
+/gps/hist/point 0.575959 0
+/gps/hist/point 0.593412 0
+/gps/hist/point 0.610865 0
+/gps/hist/point 0.628319 0
+/gps/hist/point 0.645772 0
+/gps/hist/point 0.663225 0
+/gps/hist/point 0.680678 0
+/gps/hist/point 0.698132 0
+/gps/hist/point 0.715585 0
+/gps/hist/point 0.733038 0
+/gps/hist/point 0.750492 0
+/gps/hist/point 0.767945 0
+/gps/hist/point 0.785398 0
+/gps/hist/point 0.802851 0
+/gps/hist/point 0.820305 0
+/gps/hist/point 0.837758 0
+/gps/hist/point 0.855211 0
+/gps/hist/point 0.872665 0
+/gps/hist/point 0.890118 0
+/gps/hist/point 0.907571 0
+/gps/hist/point 0.925025 0
+/gps/hist/point 0.942478 0
+/gps/hist/point 0.959931 0
+/gps/hist/point 0.977384 0
+/gps/hist/point 0.994838 0
+/gps/hist/point 1.01229 0
+/gps/hist/point 1.02974 1.05003e-06
+/gps/hist/point 1.0472 0
+/gps/hist/point 1.06465 0
+/gps/hist/point 1.0821 0
+/gps/hist/point 1.09956 0
+/gps/hist/point 1.11701 0
+/gps/hist/point 1.13446 0
+/gps/hist/point 1.15192 0
+/gps/hist/point 1.16937 0
+/gps/hist/point 1.18682 0
+/gps/hist/point 1.20428 1.05003e-06
+# EOF 

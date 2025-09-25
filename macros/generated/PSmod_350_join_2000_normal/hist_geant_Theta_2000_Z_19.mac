@@ -1,0 +1,24 @@
+# hist key: Theta_2000_19
+# Z = 19
+# 
+##########################
+/gps/ang/type user
+/gps/hist/type theta
+/gps/hist/point 0.0174533 0.586145
+/gps/hist/point 0.0349066 0.307944
+/gps/hist/point 0.0523599 0.038728
+/gps/hist/point 0.0698132 0.0295189
+/gps/hist/point 0.0872665 0.0212082
+/gps/hist/point 0.10472 0.0102849
+/gps/hist/point 0.122173 0.00409032
+/gps/hist/point 0.139626 0.00145407
+/gps/hist/point 0.15708 0.000390117
+/gps/hist/point 0.174533 0.000118217
+/gps/hist/point 0.191986 4.72869e-05
+/gps/hist/point 0.20944 1.18217e-05
+/gps/hist/point 0.226893 3.54652e-05
+/gps/hist/point 0.244346 0
+/gps/hist/point 0.261799 1.18217e-05
+/gps/hist/point 0.279253 0
+/gps/hist/point 0.296706 1.18217e-05
+# EOF 

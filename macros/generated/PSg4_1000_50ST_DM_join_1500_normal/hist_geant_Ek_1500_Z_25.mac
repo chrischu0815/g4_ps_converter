@@ -1,0 +1,80 @@
+# hist key: Ekin_1500_25
+# Z = 25
+# 
+##########################
+/gps/source/add 2.9226e-07
+/gps/particle ion
+/gps/ion 25 55 # with u = 54.9244
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/centre 0 0 -200 mm
+/gps/direction 0 0 1
+/gps/pos/halfx 37.5 mm
+/gps/pos/halfy 37.5 mm
+/gps/ene/type Arb
+/gps/ene/diffspec 1
+/gps/hist/type arb
+/gps/hist/point 54.9244 0.0454545
+/gps/hist/point 109.849 0.0757576
+/gps/hist/point 164.773 0.106061
+/gps/hist/point 219.697 0.0757576
+/gps/hist/point 274.622 0.0151515
+/gps/hist/point 329.546 0.0757576
+/gps/hist/point 384.471 0.0454545
+/gps/hist/point 439.395 0.106061
+/gps/hist/point 494.319 0.0151515
+/gps/hist/point 549.244 0.0454545
+/gps/hist/point 604.168 0.030303
+/gps/hist/point 659.092 0.0454545
+/gps/hist/point 714.017 0.0151515
+/gps/hist/point 768.941 0.030303
+/gps/hist/point 823.865 0.0151515
+/gps/hist/point 878.79 0.0151515
+/gps/hist/point 933.714 0
+/gps/hist/point 988.639 0.0151515
+/gps/hist/point 1043.56 0.0454545
+/gps/hist/point 1098.49 0
+/gps/hist/point 1153.41 0.030303
+/gps/hist/point 1208.34 0
+/gps/hist/point 1263.26 0.0151515
+/gps/hist/point 1318.18 0.0151515
+/gps/hist/point 1373.11 0.0151515
+/gps/hist/point 1428.03 0
+/gps/hist/point 1482.96 0.0151515
+/gps/hist/point 1537.88 0.0151515
+/gps/hist/point 1592.81 0.0151515
+/gps/hist/point 1647.73 0.0151515
+/gps/hist/point 1702.66 0
+/gps/hist/point 1757.58 0
+/gps/hist/point 1812.5 0
+/gps/hist/point 1867.43 0
+/gps/hist/point 1922.35 0
+/gps/hist/point 1977.28 0
+/gps/hist/point 2032.2 0.0151515
+/gps/hist/point 2087.13 0
+/gps/hist/point 2142.05 0
+/gps/hist/point 2196.97 0
+/gps/hist/point 2251.9 0
+/gps/hist/point 2306.82 0
+/gps/hist/point 2361.75 0
+/gps/hist/point 2416.67 0
+/gps/hist/point 2471.6 0
+/gps/hist/point 2526.52 0
+/gps/hist/point 2581.45 0
+/gps/hist/point 2636.37 0
+/gps/hist/point 2691.29 0
+/gps/hist/point 2746.22 0
+/gps/hist/point 2801.14 0
+/gps/hist/point 2856.07 0
+/gps/hist/point 2910.99 0
+/gps/hist/point 2965.92 0
+/gps/hist/point 3020.84 0
+/gps/hist/point 3075.76 0
+/gps/hist/point 3130.69 0
+/gps/hist/point 3185.61 0
+/gps/hist/point 3240.54 0.0151515
+/gps/hist/point 3295.46 0
+/gps/hist/point 3350.39 0
+/gps/hist/point 3405.31 0.0151515
+/gps/hist/inter Lin
+# EOF 

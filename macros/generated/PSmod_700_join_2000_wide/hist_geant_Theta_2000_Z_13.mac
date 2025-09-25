@@ -1,0 +1,17 @@
+# hist key: Theta_wide_2000_13
+# Z = 13
+# 
+##########################
+/gps/ang/type user
+/gps/hist/type theta
+/gps/hist/point 0.0174533 0.497689
+/gps/hist/point 0.0349066 0.455473
+/gps/hist/point 0.0523599 0.0364396
+/gps/hist/point 0.0698132 0.00806313
+/gps/hist/point 0.0872665 0.00193324
+/gps/hist/point 0.10472 0.000349322
+/gps/hist/point 0.122173 3.82819e-05
+/gps/hist/point 0.139626 4.78524e-06
+/gps/hist/point 0.15708 4.78524e-06
+/gps/hist/point 0.174533 4.78524e-06
+# EOF 

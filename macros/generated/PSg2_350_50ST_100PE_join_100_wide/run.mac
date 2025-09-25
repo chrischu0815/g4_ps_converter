@@ -1,0 +1,5 @@
+/run/initialize
+/control/execute sim.mac
+/analysis/setFileName PSg2_350_50ST_100PE_join.root
+/run/printProgress 5000000
+/run/beamOn 500000000

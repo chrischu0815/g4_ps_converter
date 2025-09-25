@@ -1,0 +1,58 @@
+# hist key: Ekin_100_26
+# Z = 26
+# 
+##########################
+/gps/source/add 1.86199e-08
+/gps/particle ion
+/gps/ion 26 56 # with u = 55.9207
+/gps/pos/type Plane
+/gps/pos/shape Square
+/gps/pos/centre 0 0 -200 mm
+/gps/direction 0 0 1
+/gps/pos/halfx 37.5 mm
+/gps/pos/halfy 37.5 mm
+/gps/ene/type Arb
+/gps/ene/diffspec 1
+/gps/hist/type arb
+/gps/hist/point 55.9207 0.0952381
+/gps/hist/point 111.841 0.0952381
+/gps/hist/point 167.762 0.119048
+/gps/hist/point 223.683 0.0714286
+/gps/hist/point 279.604 0.0952381
+/gps/hist/point 335.524 0.0714286
+/gps/hist/point 391.445 0.047619
+/gps/hist/point 447.366 0.0714286
+/gps/hist/point 503.286 0.0238095
+/gps/hist/point 559.207 0.0238095
+/gps/hist/point 615.128 0.0238095
+/gps/hist/point 671.049 0.0238095
+/gps/hist/point 726.969 0
+/gps/hist/point 782.89 0.0238095
+/gps/hist/point 838.811 0
+/gps/hist/point 894.731 0.047619
+/gps/hist/point 950.652 0
+/gps/hist/point 1006.57 0.047619
+/gps/hist/point 1062.49 0
+/gps/hist/point 1118.41 0
+/gps/hist/point 1174.33 0.0238095
+/gps/hist/point 1230.26 0
+/gps/hist/point 1286.18 0.0238095
+/gps/hist/point 1342.1 0
+/gps/hist/point 1398.02 0
+/gps/hist/point 1453.94 0
+/gps/hist/point 1509.86 0
+/gps/hist/point 1565.78 0
+/gps/hist/point 1621.7 0.0238095
+/gps/hist/point 1677.62 0
+/gps/hist/point 1733.54 0
+/gps/hist/point 1789.46 0
+/gps/hist/point 1845.38 0
+/gps/hist/point 1901.3 0
+/gps/hist/point 1957.22 0
+/gps/hist/point 2013.15 0
+/gps/hist/point 2069.07 0
+/gps/hist/point 2124.99 0
+/gps/hist/point 2180.91 0
+/gps/hist/point 2236.83 0.047619
+/gps/hist/inter Lin
+# EOF 

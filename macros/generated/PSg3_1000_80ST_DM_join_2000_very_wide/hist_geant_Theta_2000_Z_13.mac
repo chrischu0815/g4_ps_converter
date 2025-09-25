@@ -1,0 +1,65 @@
+# hist key: Theta_very_wide_2000_13
+# Z = 13
+# 
+##########################
+/gps/ang/type user
+/gps/hist/type theta
+/gps/hist/point 0.0174533 0.162251
+/gps/hist/point 0.0349066 0.451752
+/gps/hist/point 0.0523599 0.327608
+/gps/hist/point 0.0698132 0.0561214
+/gps/hist/point 0.0872665 0.00140303
+/gps/hist/point 0.10472 0.000250381
+/gps/hist/point 0.122173 0.000160153
+/gps/hist/point 0.139626 0.000110528
+/gps/hist/point 0.15708 8.34602e-05
+/gps/hist/point 0.174533 6.09034e-05
+/gps/hist/point 0.191986 5.6392e-05
+/gps/hist/point 0.20944 2.25568e-05
+/gps/hist/point 0.226893 2.70682e-05
+/gps/hist/point 0.244346 2.70682e-05
+/gps/hist/point 0.261799 1.12784e-05
+/gps/hist/point 0.279253 1.12784e-05
+/gps/hist/point 0.296706 1.12784e-05
+/gps/hist/point 0.314159 6.76704e-06
+/gps/hist/point 0.331613 2.25568e-06
+/gps/hist/point 0.349066 6.76704e-06
+/gps/hist/point 0.366519 0
+/gps/hist/point 0.383972 0
+/gps/hist/point 0.401426 0
+/gps/hist/point 0.418879 2.25568e-06
+/gps/hist/point 0.436332 0
+/gps/hist/point 0.453786 0
+/gps/hist/point 0.471239 0
+/gps/hist/point 0.488692 0
+/gps/hist/point 0.506145 2.25568e-06
+/gps/hist/point 0.523599 0
+/gps/hist/point 0.541052 2.25568e-06
+/gps/hist/point 0.558505 0
+/gps/hist/point 0.575959 2.25568e-06
+/gps/hist/point 0.593412 0
+/gps/hist/point 0.610865 0
+/gps/hist/point 0.628319 0
+/gps/hist/point 0.645772 0
+/gps/hist/point 0.663225 0
+/gps/hist/point 0.680678 0
+/gps/hist/point 0.698132 0
+/gps/hist/point 0.715585 0
+/gps/hist/point 0.733038 0
+/gps/hist/point 0.750492 0
+/gps/hist/point 0.767945 0
+/gps/hist/point 0.785398 2.25568e-06
+/gps/hist/point 0.802851 0
+/gps/hist/point 0.820305 0
+/gps/hist/point 0.837758 0
+/gps/hist/point 0.855211 0
+/gps/hist/point 0.872665 0
+/gps/hist/point 0.890118 0
+/gps/hist/point 0.907571 0
+/gps/hist/point 0.925025 2.25568e-06
+/gps/hist/point 0.942478 0
+/gps/hist/point 0.959931 0
+/gps/hist/point 0.977384 0
+/gps/hist/point 0.994838 0
+/gps/hist/point 1.01229 2.25568e-06
+# EOF 
