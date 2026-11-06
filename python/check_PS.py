@@ -1,19 +1,20 @@
-##Copyright © 2024 GSI Helmholtzzentrum für Schwerionenforschung gmbh
-#<https://gsi.de/>
-# 
-#Everyone is permitted to copy and distribute verbatim copies of this license
-#document, but changing it is not allowed.
-# 
-#Preamble
-#The GNU General Public License is a free, copyleft license for software and
-#other kinds of works. The licenses for most software and other practical
-#works are designed to take away your freedom to share and change the works.
-#By contrast, the GNU General Public License is intended to guarantee your
-#freedom to share and change all versions of a program--to make sure it
-#remains free software for all its users. We, GSI Helmholtzzentrum für
-#Schwerionenforschung, use the GNU General Public License for most of our
-#software; it applies also to any other work released this way by its authors.
-#You can apply it to your programs, too.
+# Copyright © 2026 GSI Helmholtzzentrum für Schwerionenforschung gmbh
+# <https://gsi.de/>
+#
+# Everyone is permitted to copy and distribute verbatim copies of this license
+# document, but changing it is not allowed.
+#
+# Preamble
+# The GNU Affero General Public License (version 3) is a free, copyleft
+# license for software and other kinds of works. The licenses for most
+# software and other practical works are designed to take away your freedom
+# to share and change the works. By contrast, the GNU Affero General Public
+# License is intended to guarantee your freedom to share and change all
+# versions of a program--to make sure it remains free software for all its
+# users. We, GSI Helmholtzzentrum für Schwerionenforschung, use the GNU
+# Affero General Public License for most of our software; it applies also to
+# any other work released this way by its authors. You can apply it to your
+# programs, too.
 
 """
 Check the phase space.
@@ -32,12 +33,21 @@ import numpy as np
 import os
 
 
-def import_root_file(root_file_path: Path, hist_name):
+def import_root_file(root_file_path: Path, hist_name, flow=False):
     file = uproot.open(root_file_path)
     hist = file[hist_name]
-    x = hist.axis().centers()
-    y = hist.values()
+    x = hist.axis().centers(flow=flow)
+    y = hist.values(flow=flow)
     return x, y
+
+
+def get_data_for_plot(root_file_path, hist_name, flow=False):
+    file = uproot.open(root_file_path)
+    hist = file[hist_name]
+    edges = hist.axis().edges(flow=flow)
+    widths = hist.axis().widths(flow=flow)
+    y = hist.values(flow=flow)
+    return edges, y / widths
 
 
 def generate_config_dict(
@@ -80,8 +90,15 @@ def generate_config_dict(
         "X",
         "Y",
     ]
+    plot_units_list_y = [
+        "counts [1/rad]",
+        "counts [1/rad]",
+        "counts [u/MeV]",
+        "counts [1/mm]",
+        "counts [1/mm]",
+    ]
 
-    plot_units_list = [
+    plot_units_list_x = [
         "Theta [rad]",
         "Phi [rad]",
         "Ek [MeV/u]",
@@ -97,10 +114,17 @@ def generate_config_dict(
         "reshoot_config": {
             "quantity": quantity_PS_reshoot_list[quantity_reshoot_index]
         },
-        "units": plot_units_list[quantity_original_index],
+        "units_x": plot_units_list_x[quantity_original_index],
+        "units_y": plot_units_list_y[quantity_original_index],
     }
 
     return config_dic
+
+
+def calculate_chi2(Y1, Y2):
+    delta2 = (Y1 - Y2) ** 2
+    den = Y1 + Y2  # quadratic sum of errors:
+    return delta2 / den
 
 
 def _generate_key_original_ps(config_dic, z):
@@ -127,69 +151,116 @@ def calculate_normalization(original_root, reshoot_root, config_dic, z):
     """
     original_root_key = _generate_key_original_ps(config_dic, z)
     reshoot_root_key = generate_key_reshoot_ps(config_dic, z)
-    x_original, y_original = import_root_file(original_root, original_root_key)
-    x_reshoot, y_reshoot = import_root_file(reshoot_root, reshoot_root_key)
+    # x_original, y_original = import_root_file(
+    #    original_root, original_root_key, flow=True
+    # )
+    # x_reshoot, y_reshoot = import_root_file(reshoot_root, reshoot_root_key, flow=True)
 
-    counts_reshoot = np.sum(y_reshoot)
-    counts_original = np.sum(y_original)
+    counts_original = calculate_total_counts(
+        original_root, original_root_key, flow=True
+    )
+    counts_reshoot = calculate_total_counts(reshoot_root, reshoot_root_key, flow=True)
+    # counts_reshoot = np.trapezoid(y_reshoot[1:-1], x_reshoot)
+    # counts_original = np.trapezoid(y_original[1:-1], x_original)
+    # overflow_orig = y_original[-1]
+    # underflow_orig = y_original[0]
+    # overflow_res = y_reshoot[-1]
+    # underflow_res = y_reshoot[0]
 
     return counts_original / counts_reshoot
+
+
+def calculate_total_counts(root_histogram, key, flow=False):
+    x, y = import_root_file(root_histogram, key, flow=flow)
+
+    integral = np.trapezoid(y[1:-1], x[1:-1])
+    return integral + y[0] + y[-1]
+    # return np.sum(y)
+
+
+def define_particle_list(z_max):
+    particle_list = [str(a) for a in range(0, z_max)]
+    extra_particles = ["e-", "e+", "gamma", "mu-", "mu+", "pi-", "pi+"]
+    for p in extra_particles:
+        particle_list.append(p)
+    return particle_list
 
 
 def process_data(
     original_root, reshoot_root, config_dic, z_max, normalization, output_pdf, pbar
 ):
-        for z in range(0, z_max):
-            original_root_key = _generate_key_original_ps(config_dic, z)
-            reshoot_root_key = generate_key_reshoot_ps(config_dic, z)
-            x_original, y_original = import_root_file(original_root, original_root_key)
-            x_reshoot, y_reshoot = import_root_file(reshoot_root, reshoot_root_key)
+    particle_list = define_particle_list(z_max)
+    for p in particle_list:
+        original_root_key = _generate_key_original_ps(config_dic, p)
+        reshoot_root_key = generate_key_reshoot_ps(config_dic, p)
+        x_original_plot, y_original_plot = get_data_for_plot(
+            original_root, original_root_key
+        )
+        x_reshoot_plot, y_reshoot_plot = get_data_for_plot(
+            reshoot_root, reshoot_root_key
+        )
 
-            fig, ax = plt.subplots()
-            ax.plot(
-                x_reshoot,
-                y_reshoot * normalization,
-                label="output PS * normalization",
-                marker="d",
-                color="orange",
+        fig, ax = plt.subplots()
+        ax.stairs(
+            y_reshoot_plot * normalization,
+            x_reshoot_plot,
+            label="output PS * normalization",
+            color="orange",
+        )
+
+        ax.stairs(
+            y_reshoot_plot,
+            x_reshoot_plot,
+            color="crimson",
+            label="output PS",
+        )
+        ax.stairs(y_original_plot, x_original_plot, label="input PS", color="navy")
+
+        x_original, y_original = import_root_file(original_root, original_root_key)
+        x_reshoot, y_reshoot = import_root_file(reshoot_root, reshoot_root_key)
+        original_counts = calculate_total_counts(original_root, original_root_key)
+        reshoot_counts = calculate_total_counts(reshoot_root, reshoot_root_key)
+        str_to_print = f"original counts = {original_counts:.1f}, reshoot_counts = {reshoot_counts:.1f}"
+        ax.text(0.5, 0.8, str_to_print, transform=plt.gca().transAxes)
+        str_to_print = f"normalization = {normalization:.3f}, reshoot_counts*normalization = {reshoot_counts * normalization:.1f}"
+        ax.text(0.5, 0.75, str_to_print, transform=plt.gca().transAxes)
+        plot_units_x = config_dic["units_x"]
+        plot_units_y = config_dic["units_y"]
+
+        # means and averages are calculated without overflow, on the data plotted
+        norm_reshoot = np.trapezoid(y_reshoot, x_reshoot)
+        if norm_reshoot != 0:
+            x_mean_reshoot = (
+                np.trapezoid(y_reshoot * x_reshoot, x_reshoot) / norm_reshoot
             )
-
-            ax.plot(
-                x_reshoot,
-                y_reshoot,
-                marker="p",
-                color="crimson",
-                label="output PS",
+        else:
+            x_mean_reshoot = np.nan
+        norm_original = np.trapezoid(y_original, x_original)
+        if norm_original != 0:
+            x_mean_original = (
+                np.trapezoid(y_original * x_original, x_original) / norm_original
             )
-            ax.plot(x_original, y_original, label="input PS", marker="x", color="navy")
-            str_to_print = f"original counts = {np.sum(y_original):.1f}, reshoot_counts = {np.sum(y_reshoot):.1f}"
-            ax.text(0.5, 0.8, str_to_print, transform=plt.gca().transAxes)
-            str_to_print = f"normalization = {normalization:.3f}, reshoot_counts*normalization = {np.sum(y_reshoot)*normalization:.1f}"
-            ax.text(0.5, 0.75, str_to_print, transform=plt.gca().transAxes)
-            plot_units = config_dic["units"]
+        else:
+            x_mean_original = np.nan
 
-            norm_reshoot = np.trapezoid(y_reshoot, x_reshoot)
-            x_mean_reshoot = np.trapezoid(y_reshoot * x_reshoot, x_reshoot) / norm_reshoot
-            norm_original = np.trapezoid(y_original, x_original)
-            x_mean_original = np.trapezoid(y_original * x_original, x_original) / norm_original
-            str_to_print = f"original average = {x_mean_original:.2f} {plot_units}, reshoot average = {x_mean_reshoot:.2f} {plot_units}"
+        str_to_print = f"original average = {x_mean_original:.2f} {plot_units_x}, reshoot average = {x_mean_reshoot:.2f} {plot_units_x}"
 
-            ax.text(0.5, 0.7, str_to_print, transform=plt.gca().transAxes)
-            ax.axvline(x_mean_original, label="original average", color="green")
-            ax.axvline(x_mean_reshoot, label="reshoot average", color="lightgreen")
-            ax.grid()
-            ax.legend()
+        ax.text(0.5, 0.7, str_to_print, transform=plt.gca().transAxes)
+        ax.axvline(x_mean_original, label="original average", color="green")
+        ax.axvline(x_mean_reshoot, label="reshoot average", color="lightgreen")
+        ax.grid()
+        ax.legend()
+        if norm_reshoot != 0:
             ax.set_yscale("log")
-            ax.set_xlabel(plot_units)
-            title_config = (
-                f"original_key={original_root_key}___reshoot_key={reshoot_root_key}"
-            )
-            ax.set_title(title_config)
-            output_pdf.savefig(fig)
-            plt.close(fig)
-            pbar.update(1)
-
-
+        ax.set_xlabel(plot_units_x)
+        ax.set_ylabel(plot_units_y)
+        title_config = (
+            f"original_key={original_root_key}___reshoot_key={reshoot_root_key}"
+        )
+        ax.set_title(title_config)
+        output_pdf.savefig(fig)
+        plt.close(fig)
+        pbar.update(1)
 
 
 def main():
@@ -226,16 +297,24 @@ def main():
     normalization = calculate_normalization(original_root, reshoot_root, config_dic, 1)
     print(f"normalization = {normalization}")
     n_of_keys = 5
-    total_intructions = n_of_keys*z_max
+    total_intructions = n_of_keys * (z_max + 7)
 
-    with PdfPages(f'{output_path}/validation.pdf') as output_pdf:
-        with tqdm(total=total_intructions, desc="Processing", position = 0) as pbar:
-            for i in range(n_of_keys): ## loop over the quantityes
-                config_dic = generate_config_dict(user_configuration, user_dimensions, i, i)
-                #print(f"Processing key = {config_dic['original_config']['quantity']}")
-                #print(config_dic)
+    with PdfPages(f"{output_path}/validation.pdf") as output_pdf:
+        with tqdm(total=total_intructions, desc="Processing", position=0) as pbar:
+            for i in range(n_of_keys):  ## loop over the quantityes
+                config_dic = generate_config_dict(
+                    user_configuration, user_dimensions, i, i
+                )
+                # print(f"Processing key = {config_dic['original_config']['quantity']}")
+                # print(config_dic)
                 process_data(
-                    original_root, reshoot_root, config_dic, z_max, normalization, output_pdf, pbar
+                    original_root,
+                    reshoot_root,
+                    config_dic,
+                    z_max,
+                    normalization,
+                    output_pdf,
+                    pbar,
                 )
 
 

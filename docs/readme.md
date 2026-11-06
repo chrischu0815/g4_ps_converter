@@ -1,16 +1,14 @@
-# Phase space documentation (2025 edition)
+# Phase space documentation (beamtime GCR 2025)
+
+Updated version 2026
 
 ## Table of Contents
-
-<h4>
 
 1. [Introduction](#introduction)
 2. [Simulated geometry](#simulated-geometry)
 3. [Beam parameters](#beam-parameters)
 4. [Benchmark of the generated Phase Space](#benchmark-of-the-generated-phase-space)
 5. [How to use the Phase Space](#how-to-use-the-phase-space)
-
-</h4>
 
 ## Introduction
 
@@ -63,13 +61,13 @@ Additionally, two ''slab modulators'' configuration include an additional compon
 ![alt text](./pics/mod1000_0000.png "Complex modulator 1 GeV/u")
 1. $0.7\, \text{GeV}\,  \text{u}^{-1}$ complex modulator, identified in the naming convention ''mod_700''
 ![alt text](./pics/mod700_0000.png "Complex modulator 0.7 GeV/u")
-3. $0.35\, \text{GeV}\,  \text{u}^{-1}$ complex modulator., identified in the naming convention ''mod_350''.
+1. $0.35\, \text{GeV}\,  \text{u}^{-1}$ complex modulator., identified in the naming convention ''mod_350''.
 ![alt text](./pics/mod350_0000.png "Complex modulator 0.35 GeV/u")
-4. $0.35\, \text{GeV}\,  \text{u}^{-1}$ slab modulator, PE + steel, identified in the naming convention ''g2_350''.
+1. $0.35\, \text{GeV}\,  \text{u}^{-1}$ slab modulator, PE + steel, identified in the naming convention ''g2_350''.
 ![alt text](./pics/g2_0000.png "G2")
-5. $1\, \text{GeV}\,  \text{u}^{-1}$ slab modulator, 80 mm of steel + FRANCO, identified in the naming convention ''g3_1000''.
+1. $1\, \text{GeV}\,  \text{u}^{-1}$ slab modulator, 80 mm of steel + FRANCO, identified in the naming convention ''g3_1000''.
 ![alt text](./pics/g3_0000.png "G3")
-6. $1\, \text{GeV}\,  \text{u}^{-1}$ slab modulator, 50 mm of steel + FRANCO, identified in the naming convention ''g4_1000''.
+1. $1\, \text{GeV}\,  \text{u}^{-1}$ slab modulator, 50 mm of steel + FRANCO, identified in the naming convention ''g4_1000''.
 ![alt text](./pics/g4_0000.png "G4")
 
 The picture follow a specific color coding:
@@ -114,12 +112,9 @@ where:
 
 e.g. `PSg4_1000_50ST_DM_join_1500_very_wide/` containts the file of ''g4'' slab modulator at $1 \text{GeV}\, \text{u}^{-1}$, at 1500 mm from the last element of the beamline in with a scoring dimension of  $200 \times 200 \, \text{mm}^2$.
 
-Additionally, a phase space made by the weighted joining of all the configurations, with the aim of reproducing directly the simulated GCR field is provided.
-Such configuration is called `fullGCR`.
-
 #### Using the phase space data
 
-The PS files comprehend a total of $135$ macro files. Each file contains the distributions required to generate the PS for each $Z$ from 0 (neutrons) to 26 (iron).
+The PS files comprehend a total of $349$ macro files. Each file contains the distributions required to generate the PS for each $Z$ from 0 (neutrons) to 26 (iron). Additionally, $\pi^\pm$, $e^\pm$, $\mu^\pm$ and $\gamma$ have been added.
 The macro files contain the kinetic energy information, identifiable by the string `Ek` in the name, and also contain information about the particle type, relative abundance and spatial distributions.
 
 The macro are automatically sourced by the `sim.mac` file. As a consequence, the user just needs to add the following line:
@@ -198,6 +193,6 @@ where $N_{\text{to shoot}}$ is the number particles to be used in the reshoot si
 5. Calculate the corresponding `/run/beamOn` particles to be used by the PS simulation with: $\eta N_{\text{to shoot}} = 10'000 \cdot 2.312 = 23120$
 6. Run the simulation sourcing the `sim.mac`  in your marco and with  `/run/beamOn 23120` primaries.
 
-[^fnGCR_sim_1]: Two publications are submitted. Preprints available here [Hybrid Active-Passive Galactic Cosmic Ray Simulator: in silico design and optimization](https://doi.org/10.48550/arXiv.2509.13171), [Hybrid Active-Passive Galactic Cosmic Ray Simulator: experimental implementation and microdosimetric characterization](https://doi.org/10.48550/arXiv.2509.13158)
+[^fnGCR_sim_1]: Two publications are available. [Hybrid Active-Passive Galactic Cosmic Ray Simulator: in silico design and optimization](https://doi.org/10.1016/j.lssr.2026.02.003), [Hybrid Active-Passive Galactic Cosmic Ray Simulator: experimental implementation and microdosimetric characterization](https://doi.org/10.1016/j.lssr.2026.02.004)
 
 [^fngeant]: [Geant 4 website](<https://geant4.web.cern.ch/>). Publications: - - - Recent Developments in Geant4, J. Allison et al., Nucl. Instrum. Meth. A 835 (2016) 186-225 - - - Geant4 Developments and Applications, J. Allison et al., IEEE Trans. Nucl. Sci. 53 (2006) 270-278 - - - Geant4 - A Simulation Toolkit, S. Agostinelli et al., Nucl. Instrum. Meth. A 506 (2003) 250-303
